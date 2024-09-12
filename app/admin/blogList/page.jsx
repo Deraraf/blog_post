@@ -1,5 +1,4 @@
 import BlogTableItem from "@/Components/AdminComponent/BlogTableItem";
-import axios from "axios";
 
 export const dynamic = "force-dynamic";
 
