@@ -2,8 +2,10 @@ import SubsTableItem from "@/Components/AdminComponent/SubsTableItem";
 import axios from "axios";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 const getEmails = async () => {
-  const res = await axios.get("http:localhost:3000/api/emails");
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/emails`);
   const data = await res.data.emails;
   return data;
 };
@@ -25,14 +27,15 @@ const page = async () => {
             </tr>
           </thead>
           <tbody>
-            {emails.map(({ email, _id, date }, index) => (
-              <SubsTableItem
-                key={index}
-                email={email}
-                mongoId={_id}
-                date={date}
-              />
-            ))}
+            {emails &&
+              emails.map(({ email, _id, date }, index) => (
+                <SubsTableItem
+                  key={index}
+                  email={email}
+                  mongoId={_id}
+                  date={date}
+                />
+              ))}
           </tbody>
         </table>
       </div>

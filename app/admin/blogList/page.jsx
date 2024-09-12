@@ -1,8 +1,10 @@
 import BlogTableItem from "@/Components/AdminComponent/BlogTableItem";
 import axios from "axios";
 
+export const dynamic = "force-dynamic";
+
 const fetchAllData = async () => {
-  const res = await axios.get("http://localhost:3000/api/blogs");
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
   const data = await res.data.blogs;
   return data;
 };
@@ -32,16 +34,17 @@ const BlogListPage = async () => {
             </tr>
           </thead>
           <tbody>
-            {blogs.map(({ title, author, _id, author_image, date }, index) => (
-              <BlogTableItem
-                key={index}
-                mongoId={_id}
-                title={title}
-                author={author}
-                author_image={author_image}
-                date={date}
-              />
-            ))}
+            {blogs &&
+              blogs.map(({ title, author, _id, author_image, date }, index) => (
+                <BlogTableItem
+                  key={index}
+                  mongoId={_id}
+                  title={title}
+                  author={author}
+                  author_image={author_image}
+                  date={date}
+                />
+              ))}
           </tbody>
         </table>
       </div>
