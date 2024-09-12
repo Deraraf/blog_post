@@ -4,7 +4,9 @@ import axios from "axios";
 export const dynamic = "force-dynamic";
 
 const fetchAllData = async () => {
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
+    cache: "no-store",
+  });
   const data = await res.data.blogs;
   return data;
 };

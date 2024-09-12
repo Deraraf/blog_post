@@ -1,11 +1,12 @@
 import SubsTableItem from "@/Components/AdminComponent/SubsTableItem";
-import axios from "axios";
 import React from "react";
 
 export const dynamic = "force-dynamic";
 
 const getEmails = async () => {
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/emails`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/emails`, {
+    cache: "no-store",
+  });
   const data = await res.data.emails;
   return data;
 };
