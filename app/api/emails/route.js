@@ -13,9 +13,16 @@ export async function POST(request) {
 }
 
 export async function GET() {
-  const emails = await Email.find();
-
-  return NextResponse.json({ emails });
+  try {
+    const emails = await Email.find();
+    return NextResponse.json({ emails });
+  } catch (error) {
+    console.error("Error fetching emails:", error);
+    return NextResponse.json({
+      success: false,
+      message: "Error fetching emails",
+    });
+  }
 }
 
 export async function DELETE(request) {
