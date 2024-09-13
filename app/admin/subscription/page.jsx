@@ -1,8 +1,9 @@
 import SubsTableItem from "@/Components/AdminComponent/SubsTableItem";
+import { BASE_API_URL } from "@/lib/constants";
 import React from "react";
 
 const getEmails = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/emails`, {
+  const res = await fetch(`${BASE_API_URL}/api/emails`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
