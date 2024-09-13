@@ -1,3 +1,4 @@
+"use client";
 import BlogItem from "./BlogItem";
 import { useEffect, useState } from "react";
 

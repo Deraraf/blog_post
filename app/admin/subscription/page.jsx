@@ -1,8 +1,6 @@
 import SubsTableItem from "@/Components/AdminComponent/SubsTableItem";
 import React from "react";
 
-export const dynamic = "force-dynamic";
-
 const getEmails = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/emails`, {
     method: "GET",
@@ -12,6 +10,7 @@ const getEmails = async () => {
   });
 
   const data = await res.json();
+
   return data.emails;
 };
 
