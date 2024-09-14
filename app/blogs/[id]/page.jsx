@@ -1,12 +1,12 @@
 import { assets } from "@/Assets/assets";
 import Footer from "@/Components/Footer";
 import Navbar from "@/Components/Navbar";
-import axios from "axios";
+import { BASE_API_URL } from "@/lib/constants";
 
 import Image from "next/image";
 
 const getBlogData = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+  const res = await fetch(`${BASE_API_URL}/${id}`, {
     cache: "no-store",
   });
   const data = await res.json();
@@ -14,6 +14,9 @@ const getBlogData = async (id) => {
 };
 
 async function page({ params }) {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const blog = await getBlogData(params.id);
 
   return blog ? (

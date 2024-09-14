@@ -10,6 +10,9 @@ const getEmail = async () => {
 };
 
 const page = async () => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const emails = await getEmail();
   return (
     <div className="flex-1 pt-5 px-5 sm:pt-12 sm:pl-16">

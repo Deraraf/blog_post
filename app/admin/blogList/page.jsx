@@ -19,6 +19,9 @@ const fetchAllData = async () => {
 };
 
 const BlogListPage = async () => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const blogs = await fetchAllData();
 
   return (
