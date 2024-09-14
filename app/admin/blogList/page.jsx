@@ -1,8 +1,6 @@
 import BlogTableItem from "@/Components/AdminComponent/BlogTableItem";
 import { BASE_API_URL } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
-
 const fetchAllData = async () => {
   const res = await fetch(
     `${BASE_API_URL}/api/blogs`,
