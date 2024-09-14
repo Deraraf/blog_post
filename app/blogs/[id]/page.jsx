@@ -2,12 +2,15 @@ import { assets } from "@/Assets/assets";
 import Footer from "@/Components/Footer";
 import Navbar from "@/Components/Navbar";
 import axios from "axios";
+
 import Image from "next/image";
 
 const getBlogData = async (id) => {
-  const res = await axios.get(`http://localhost:3000/api/blogs/${id}`);
-  const blog = res.data.blog;
-  return blog;
+  const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  return data.blog;
 };
 
 async function page({ params }) {

@@ -4,14 +4,20 @@ import { BASE_API_URL } from "@/lib/constants";
 export const dynamic = "force-dynamic";
 
 const fetchAllData = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/blogs`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
+  const res = await fetch(
+    `${BASE_API_URL}/api/blogs`,
+    {
+      cache: "no-cache",
     },
-  });
-  const data = await res.data.blogs;
-  return data;
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await res.json();
+  return data.blogs;
 };
 
 const BlogListPage = async () => {

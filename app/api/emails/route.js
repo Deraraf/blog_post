@@ -2,18 +2,9 @@ import { connectDb } from "@/lib/config/db";
 import Email from "@/lib/model/emailModel";
 import { NextResponse } from "next/server";
 
-await connectDb();
-
-export async function POST(request) {
-  const formData = await request.formData();
-  const email = formData.get("email");
-  await Email.create({ email });
-
-  return NextResponse.json({ success: true, message: "Email subscribed!" });
-}
-
-export async function GET() {
+export async function GET(request) {
   try {
+    await connectDb();
     const emails = await Email.find();
     return NextResponse.json({ emails });
   } catch (error) {
@@ -21,6 +12,23 @@ export async function GET() {
     return NextResponse.json({
       success: false,
       message: "Error fetching emails",
+    });
+  }
+}
+
+export async function POST(request) {
+  try {
+    await connectDb();
+    const formData = await request.formData();
+    const email = formData.get("email");
+    await Email.create({ email });
+
+    return NextResponse.json({ success: true, message: "Email subscribed!" });
+  } catch (error) {
+    console.error("Error posting email:", error);
+    return NextResponse.json({
+      success: false,
+      message: "Error subscribing email",
     });
   }
 }
