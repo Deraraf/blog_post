@@ -8,12 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Home() {
   return (
     <>
-      // <ToastContainer theme="dark" />
-      // <Navbar />
-      // <Header />
-      // <Bloglist />
-      // <Footer />
-    hello
+    hello page
     </>
   );
 }
